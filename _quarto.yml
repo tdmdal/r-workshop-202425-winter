@@ -1,0 +1,26 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - "index.qmd"
+  resources:
+    - "*.ipynb"
+
+website:
+  title: "Intro to R - Winter 2025"
+  search: false
+  navbar:
+    right:
+      - text: Home
+        file: index.qmd
+
+format:
+  html:
+    theme:
+      - united
+      - custom.scss
+    toc: true
+    fontsize: 95%
+
+editor: visual
+

@@ -1,0 +1,79 @@
+---
+title: "Introduction to R"
+---
+
+R is an open-source programming language for statistical computing and graphics. R is extensible, and has a large collection of high-quality user contributed packages that provides easy tools for common data analysis tasks. This mini-course will introduce you the fundamentals of R programming with a focus on data management, data visualization and quantitative finance applications in R.
+
+------------------------------------------------------------------------
+
+### What To Prepare
+
+-   Please install [R](https://www.r-project.org/) and [RStudio Desktop](https://posit.co/download/rstudio-desktop/) before the first session.
+
+    RStudio is the most popular IDE (Integrated Development Environment) for R. Most people use RStudio if they want to write some R code.
+
+    If you encounter technical difficulties installing the software, you can instead create a free [RStudio Cloud](https://posit.cloud/) account so you can run R and RStudio in the cloud via your browser.
+
+    An alternative to RStudio Cloud is the UofT JupyterHub/RStudio system. Go to its [home page](https://datatools.utoronto.ca/), choose the *RStudio* option, and click *Log in to start*. You will need your UTORid.
+
+-   We will also use [Google Colab](https://colab.research.google.com/), and I assume you all have a Google account.
+
+    Google Colab lets you combine code and notes in a "notebook". It is a hosted Jupyter Notebook service that requires no setup to use. It is a convenient coding environment to get started with R programming.
+    
+
+    UofT JupyterHub offers a similar notebook setting. Go to its [home page](https://datatools.utoronto.ca/), choose the *Jupyter Notebook* or *JupyterLab* option, and click *Log in to start*. You will need your UTORid.
+
+------------------------------------------------------------------------
+
+### Part 1 (Overview & Basics)
+
+*Coming Soon*
+
+### Part 2 (Data Manipulation)
+
+*Coming Soon*
+
+### Part 3 (Visualization)
+
+*Coming Soon*
+
+### Part 4 (Tidymodels, Time Series and Some R Finance Packages)
+
+*Coming Soon*
+
+------------------------------------------------------------------------
+
+### Resources
+
+-   From Zero to Hero
+    -   Step 1: [Hands-on Programming with R](https://rstudio-education.github.io/hopr/) (start here if you never programmed before.)
+    -   Step 2: [R for Data Science](https://r4ds.hadley.nz/) (data science with R's Tidyverse eco-system; [1st ed](https://r4ds.had.co.nz/).)
+    -   Step 3: [Advanced R](https://adv-r.hadley.nz/) (master R)
+-   R Graphics
+    -   [R Graphics Cookbook](https://r-graphics.org/)
+    -   [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/)
+    -   [The R Graph Gallery](https://www.r-graph-gallery.com/) (R graph samples with code)
+-   R Econometrics & Finance
+    -   [Tidy Finance with R](https://www.tidy-finance.org/r/)
+    -   [Introduction to Econometrics with R](https://www.econometrics-with-r.org/)
+    -   Forecasting: Principles and Practice ([2nd ed.](https://otexts.com/fpp2/); [3rd ed.](https://otexts.com/fpp3/))
+    -   [Portfolio Optimization](https://portfoliooptimizationbook.com/) (R & Python code available)
+    -   [Financial Engineering Analytics: A Practice Manual Using R](https://bookdown.org/wfoote01/faur/)
+    -   Financial Risk Modelling and Portfolio Optimization with R ([free access](https://onlinelibrary.wiley.com/doi/book/10.1002/9781119119692) via UofT library)
+    -   Statistics and Data Analysis for Financial Engineering with R examples ([book download](https://link.springer.com/book/10.1007/978-1-4939-2614-5); [book site](https://people.orie.cornell.edu/davidr/SDAFE2/index.html))
+-   R Machine Learning
+    -   [An Introduction to Statistical Learning / with Applications in R](https://www.statlearning.com/) (R & Python code available)
+    -   [R Interface to Keras](https://keras3.posit.co/) (deep learning with R)
+    -   [Tensorflow for R](https://tensorflow.rstudio.com/) (deep learning with R)
+    -   [Torch for R](https://torch.mlverse.org/) (deep learning with R)
+-   Others
+    -   [A Short R Tutorial](https://grodri.github.io/R/) by Germán Rodríguez
+    -   [Introductory Econometrics Examples](https://justinmshea.github.io/wooldridge/articles/Introductory-Econometrics-Examples.html) (data and examples from Wooldridge)
+    -   [STAT545](https://stat545.com/) by [Jenny Bryan](https://jennybryan.org/) : Data wrangling, exploration, and analysis with R
+    -   [Programming with R](https://swcarpentry.github.io/r-novice-inflammation/) (from [software carpentry](https://software-carpentry.org/))
+    -   [R Cheat Sheets](https://posit.co/resources/cheatsheets/) (cheat sheets for many popular R packages)
+    -   Many more R books [here](https://bookdown.org/)
+
+------------------------------------------------------------------------
+
+Back to [TDMDAL Computing Page](https://tdmdal.github.io/)
