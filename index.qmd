@@ -19,7 +19,6 @@ R is an open-source programming language for statistical computing and graphics.
 -   We will also use [Google Colab](https://colab.research.google.com/), and I assume you all have a Google account.
 
     Google Colab lets you combine code and notes in a "notebook". It is a hosted Jupyter Notebook service that requires no setup to use. It is a convenient coding environment to get started with R programming.
-    
 
     UofT JupyterHub offers a similar notebook setting. Go to its [home page](https://datatools.utoronto.ca/), choose the *Jupyter Notebook* or *JupyterLab* option, and click *Log in to start*. You will need your UTORid.
 
@@ -27,7 +26,35 @@ R is an open-source programming language for statistical computing and graphics.
 
 ### Part 1 (Overview & Basics)
 
-*Coming Soon*
+-   Slides (*coming soon*)
+-   Motivation Examples
+    -   Analyze portfolio performance (R Script: [performance_analysis.R](session_1/performance_analysis.R))
+    -   Perform earnings call sentiment analysis (sentiment dictionary vs "small" language model vs LLM)
+        -   R script: [earnings_call_v2.R](session_1/earnings_call_v2.R)
+        -   Microsoft Q2 2025 earnings call [Word Cloud](session_1/msft_q2_2025_word_cloud.html)
+    -   Make web API calls to get crypto prices
+        -   R script: [api_coingecko.R](session_1/api_coingecko.R)
+        -   [Bitcoin price and volumn chart](session_1/bitcoin_chart.png)
+    -   Recognize handwritten digits, a deep learning ["Hello World" example](https://tensorflow.rstudio.com/tutorials/beginners/)
+        -   R script 1 (using [R Interface to Keras](https://keras3.posit.co/) and [Tensorflow for R](https://tensorflow.rstudio.com/)): [dl_hello_world_v2.R](session_1/dl_hello_world_v2.R)
+        -   R script 2 (using [Torch for R](https://torch.mlverse.org/)): [dl_hello_world_torch.R](session_1/dl_hello_world_torch.R)
+-   Basic Data and Programming Structures
+    -   Data structures (R Notebook [![](colab-badge.svg)](https://colab.research.google.com/github/tdmdal/r-workshop-202425-winter/blob/master/docs/session_1/R_Basic_Data_Structures.ipynb))
+    -   Programming structures (R Notebook [![](colab-badge.svg)](https://colab.research.google.com/github/tdmdal/r-workshop-202425-winter/blob/master/docs/session_1/R_Basic_Programming_Structures.ipynb))
+-   Data Science Workflow - A Regression Example (Housing prices and clean air)
+    -   Linear Regression - Base R (R Notebook [![](colab-badge.svg)](https://colab.research.google.com/github/tdmdal/r-workshop-202425-winter/blob/master/docs/session_1/Housing_Prices_Regression_Analysis_(with_base_R).ipynb))
+    -   Linear Regression - Tidyverse & Others (R Notebook [![](colab-badge.svg)](https://colab.research.google.com/github/tdmdal/r-workshop-202425-winter/blob/master/docs/session_1/Housing_Prices_Regression_Analysis_(with_Tidyverse_and_Others).ipynb))
+        -   Data Import
+        -   Data Manipulation
+        -   Modelling
+        -   Report ([regression report example](session_1/reg_report.html))
+-   Additional materials on data and programming structures (from past workshops; optional)
+    -   Data structures
+        -   [Vectors](extra_material/part1_1_vector.html)
+        -   [Derived data structures](extra_material/part1_2_derived_ds.html)
+    -   [Programming structures](extra_material/part1_3_function.html)
+-   Reading list
+    -   [R for Data Science (1e)](https://r4ds.had.co.nz/) (Chapter 1 Intro, 4 Workflow: basics, 5 Data transformation, 6 Workflow: scripts, 8 Workflow: projects, 10 Tibbles, 11 Data import, 18 Pipes, 19 Functions, 20 Vectors, and 21 Iteration.)
 
 ### Part 2 (Data Manipulation)
 
@@ -47,7 +74,7 @@ R is an open-source programming language for statistical computing and graphics.
 
 -   From Zero to Hero
     -   Step 1: [Hands-on Programming with R](https://rstudio-education.github.io/hopr/) (start here if you never programmed before.)
-    -   Step 2: [R for Data Science](https://r4ds.hadley.nz/) (data science with R's Tidyverse eco-system; [1st ed](https://r4ds.had.co.nz/).)
+    -   Step 2: [R for Data Science (2e)](https://r4ds.hadley.nz/) (data science with R's Tidyverse eco-system; [1st ed](https://r4ds.had.co.nz/).)
     -   Step 3: [Advanced R](https://adv-r.hadley.nz/) (master R)
 -   R Graphics
     -   [R Graphics Cookbook](https://r-graphics.org/)
