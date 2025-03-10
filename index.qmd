@@ -26,7 +26,7 @@ R is an open-source programming language for statistical computing and graphics.
 
 ### Part 1 (Overview & Basics)
 
--   Slides (*coming soon*)
+-   Slides ([intro1-overview](r_intro-1.pdf) and [intro2-basics](r_intro-2.pdf))
 -   Motivation Examples
     -   Analyze portfolio performance (R Script: [performance_analysis.R](session_1/performance_analysis.R))
     -   Perform earnings call sentiment analysis (sentiment dictionary vs "small" language model vs LLM)
