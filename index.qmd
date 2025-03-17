@@ -58,7 +58,15 @@ R is an open-source programming language for statistical computing and graphics.
 
 ### Part 2 (Data Manipulation)
 
-*Coming Soon*
+-   [Slides](r_data_manipulation.pdf)
+-   Code
+    -   Data Manipulation (R notebook: [![](colab-badge.svg)](https://colab.research.google.com/github/tdmdal/r-workshop-202425-winter/blob/master/docs/session_2/part2_data_manipulation.ipynb))
+-   Reading list
+    -   [R for Data Science (1e)](https://r4ds.had.co.nz/) (Chapter 5 Data transformation, 12 Tidy data, and 13 Relational data.)
+-   Handling larger-than-memory data on your laptop using Arrow (optional)
+    -   Arrow, parquet, duckdb and dbplyr, the [Arrow](https://r4ds.hadley.nz/arrow) chapter in [R for Data Science (2ed)](https://r4ds.hadley.nz/)
+    -   [Efficient Data Analysis on Larger-than-Memory Data with DuckDB and Arrow](https://www.youtube.com/watch?v=LvTX1ZAZy6M) by Thomas Mock
+    -   [Doing More with Data: An Introduction to Arrow for R Users](https://www.youtube.com/watch?v=O42LUmJZPx0) by Nanielle Navarro
 
 ### Part 3 (Visualization)
 
