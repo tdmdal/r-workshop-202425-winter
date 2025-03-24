@@ -58,7 +58,7 @@ R is an open-source programming language for statistical computing and graphics.
 
 ### Part 2 (Data Manipulation)
 
--   [Slides](r_data_manipulation.pdf)
+-   [Slides](r_data_manipulation.pdf) (tidydata and more on dplyr)
 -   Code
     -   Data Manipulation (R notebook: [![](colab-badge.svg)](https://colab.research.google.com/github/tdmdal/r-workshop-202425-winter/blob/master/docs/session_2/part2_data_manipulation.ipynb))
 -   Reading list
@@ -70,7 +70,25 @@ R is an open-source programming language for statistical computing and graphics.
 
 ### Part 3 (Visualization)
 
-*Coming Soon*
+-   [Slides](r_visualization.pdf) (ggplot2 and more)
+-   Code (for [ggplot2](https://ggplot2.tidyverse.org/index.html))
+    -   R notebook: [![](colab-badge.svg)](https://colab.research.google.com/github/tdmdal/r-workshop-202425-winter/blob/master/docs/session_3/part3_visualization.ipynb)
+    -   Quarto: Let's take this opportunity to learn about [Quarto](https://quarto.org/).
+        - Quarto code: [part3_visualization.qmd](session_3/part3_visualization.qmd)
+        - Quarto output (HTML): [part3_visualization.html](session_3/part3_visualization.html)
+-   Code (for [tidyquant charting](https://business-science.github.io/tidyquant/articles/TQ04-charting-with-tidyquant.html), [dygraph](https://rstudio.github.io/dygraphs/), and R markdown [flexdashboard](https://rmarkdown.rstudio.com/flexdashboard/))
+    -   R script: [finance_charting.R](session_3/finance_charting.R)
+    -   R markdown: Let's take this opportunity to learn about [R Markdown](https://rmarkdown.rstudio.com/).
+        - R Markdown code: [time_series_flexboard.Rmd](session_3/time_series_flexboard.Rmd)
+        - R Markdown output (HTML): [time_series_flexboard.html](session_3/time_series_flexboard.html)
+-   Reading list
+    -   [R for Data Science (1e)](https://r4ds.had.co.nz/) (Chapter 3 Data visualization, 7 Exploratory Data Analysis (EDS), and 28 Graphics for communication.)
+-   Inspiration
+    -   [Tanya Shapiro](https://indievisual.tech/)'s [github gallery](https://github.com/tashapiro) and [talks](https://indievisual.tech/talks)
+    -   [Danielle Navarro](https://djnavarro.net/)'s [Art from Code](https://art-from-code.netlify.app/)
+    -   Georgios Karamanis's [TidyTuesday plots](https://karaman.is/)
+    -   [Fronkonstin](https://fronkonstin.com/tag/ggplot2/)
+    -   [Data Imaginist](https://thomaslinpedersen.art/work/#category=R)
 
 ### Part 4 (Tidymodels, Time Series and Some R Finance Packages)
 

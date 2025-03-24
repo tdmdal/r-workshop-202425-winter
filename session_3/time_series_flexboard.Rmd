@@ -1,0 +1,58 @@
+---
+title: "Three Examples of Stock Price Series Plot (using tidyquant, dygraphs, and flexdashboard)"
+output: 
+  flexdashboard::flex_dashboard:
+    vertical_layout: scroll
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(tidyquant)
+library(timetk)
+library(dygraphs)
+
+# get AAPL stock prices
+AAPL <- tq_get("AAPL", get = "stock.prices", from = "2015-09-01", to = "2016-12-31")
+
+# set data window
+dateWindow <- c("2015-09-01", "2015-12-31")
+```
+
+### tidyquant - Candlestick Plot
+
+```{r}
+AAPL %>%
+  filter(date < as.Date("2015-12-31")) %>%
+  ggplot(aes(x = date, y = close)) +
+  geom_candlestick(aes(open = open, high = high, low = low, close = close)) +
+  labs(title = "AAPL Candlestick Chart", y = "Closing Price", x = "") +
+  theme_tq()
+```
+
+### tidyquant - Candlestick Plot with Simple Moving Average
+
+```{r}
+AAPL %>%
+  ggplot(aes(x = date, y = close)) +
+  geom_candlestick(aes(open = open, high = high, low = low, close = close)) +
+  geom_ma(ma_fun = SMA, n = 30, linetype = 5, size = 1.25) +
+  geom_ma(ma_fun = SMA, n = 90, color = "red", size = 1.25) + 
+  labs(title = "AAPL Candlestick Chart", 
+       subtitle = "50 and 200-Day SMA", 
+       y = "Closing Price", x = "") +
+  theme_tq()
+```
+
+### dygraph - Interactive Candlestick Plot with Data Window
+
+```{r}
+dateWindow <- c("2015-09-01", "2015-12-31")
+AAPL %>% 
+  select(date, open, high, low, close) %>%
+  tk_xts() %>% 
+  dygraph() %>% 
+  dyCandlestick() %>%
+  dyRangeSelector(dateWindow = dateWindow)
+```
+

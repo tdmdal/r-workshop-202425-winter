@@ -1,0 +1,313 @@
+---
+title: "Part 3 Visualization"
+author: "Jay Cao"
+date: "March 22, 2025"
+format:
+  html:
+    toc: true
+    embed-resources: true # embed resources so single html output
+---
+
+# 1. `plot()` from base R
+
+There are numerous approaches to plot graphs in R. The base R provides many basic plot functions. Let's try a few simple plots.
+
+```{r}
+# cars is a built-in dataset (data frame)
+head(cars)
+```
+
+`plot()` is a so-called "generic" function. A generic function behaves differently depending on the objects (e.g. data structures) it takes in. In this case, `plot()` plots different type of graphs depending on its input. (More precisely, `plot()` is a method associated with the input object's class.)
+
+```{r}
+# plot() takes in x- and y- axis
+plot(cars$dist, cars$speed)
+```
+
+```{r}
+# plot() takes in a dataframe, which in this case only have 2 variables/columns
+plot(cars)
+```
+
+```{r}
+# iris is another built-in dataset
+head(iris)
+```
+
+```{r}
+# plot() takes in a dataframe with many variables/columns
+plot(iris)
+```
+
+`hist()` is another generic function to plot simple histogram.
+
+```{r}
+hist(cars$speed)
+```
+
+Customize the histogram plot.
+
+```{r}
+hist(cars$speed,
+     main="Histogram for Car Speed", 
+     xlab="Car Speed (mph)", 
+     border="pink", 
+     col="deeppink",
+     breaks=8) # suggesting number of cells/bins
+```
+
+I'll leave you to explore base R plot yourself. [Here](http://rpubs.com/SusanEJohnston/7953) is a good start.
+
+# 2. `ggplot()`
+
+Today we will focus on learning `ggplot()` from the `ggplot2` package, a powerful R plotting package based on [the grammar of graphics](http://vita.had.co.nz/papers/layered-grammar.html). The idea is that
+
+> "you can build every graph from the same components: a data set, a coordinate system, and geoms--visual marks that represent data points" -- ggplot2 [cheat sheet](https://rstudio.github.io/cheatsheets/html/data-visualization.html).
+
+The grammar of graphics enables us to concisely describe the components of a plot.
+
+Let's learn `ggplot()` using an example. (This example is inspired and built upon this [notebook](http://remi-daigle.github.io/2016-04-15-UCSB/viz)).
+
+First, load a few packages.
+
+```{r warning=FALSE}
+# for data manipulation
+library(dplyr)
+
+# the plotting package
+library(ggplot2)
+
+# gapminder contains the data we will use for our plot
+library(gapminder)
+```
+
+Let's take a quick look at the gapminder dataset.
+
+```{r}
+head(gapminder)
+```
+
+```{r}
+summary(gapminder)
+```
+
+We will only use data from the most recent year in gapminder.
+
+```{r warning=FALSE}
+# get data from the most recent year
+g_data <- gapminder %>%
+  filter(year == 2007)
+head(g_data)
+```
+
+Let's understand in general how `ggplot()` works: a layer-by-layer approach (see slides).
+
+Now, let's plot `lifeExp` against `gdpPercap` (scatter plot).
+
+```{r}
+# scatterplot of life expectancy vs GDP per capita
+ggplot(g_data, aes(x = gdpPercap, y = lifeExp)) +
+  geom_point()
+```
+
+What will you do if you want to connect those dots (i.e. make it a line plot)? This is just for exercise. Obviously it doesn't make too much sense to connect those dots.
+
+```{r}
+# your code here
+
+```
+
+What if you want to color the points in Rotman "deeppink"?
+
+```{r}
+# your code here
+
+```
+
+What if you want to label the dots by country name? Does the picture look nice? What did you find out?
+
+```{r}
+# your code here
+
+```
+
+How to make the size of the points proportional to country population (`pop`)?
+
+```{r}
+# your code here
+
+```
+
+In addition, can you color the points by continent (i.e. no more Rotman "deeppink")?
+
+```{r}
+# your code here
+
+```
+
+Can you add plot title and x- and y-axis title? Hint: add `labs(title = 'my title')` and `labs(x = "x title", y = "y title")` layers. At the same time, make the dots a bit lighter (`alpha` of the `geom_point()`)
+
+```{r}
+# your code here
+
+```
+
+OK. Let's do a few more things together.
+
+1.  improve the legend title
+2.  make the population in million (M)
+3.  move the plot title to the middle
+4.  format x-axis tick with comma_format
+
+```{r}
+library(scales)
+gapminder %>%
+  filter(year == 2007) %>%
+  mutate(pop_m = pop / 1e6) %>% #population in million
+  ggplot(aes(x = gdpPercap, y = lifeExp)) +
+    geom_point(aes(size = pop_m, color = continent), alpha = 0.5) +
+    scale_x_continuous(labels = comma_format()) + #x-axis label comma format
+    labs(title = 'Health & Wealth of Nations for 2007') +
+    labs(x = "GDP per capita ($/year)", y = "Life expectancy (years)") +
+    labs(color = "Continent", size = "Population (M)") + #legend title
+    theme(plot.title = element_text(hjust = 0.5)) #center the plot title
+```
+
+Just for an exercise, let's find Canada and label it.
+
+```{r}
+# add Canada label
+gapminder %>%
+  filter(year == 2007) %>%
+  mutate(pop_m = pop / 1e6) %>%
+  ggplot(aes(x = gdpPercap, y = lifeExp)) +
+    geom_point(aes(size = pop_m, color = continent), alpha = 0.5) +
+    geom_text(data = filter(gapminder, country == "Canada" & year == 2007), aes(label = country)) +
+    scale_x_continuous(labels = comma_format()) +
+    labs(title = 'Health & Wealth of Nations for 2007') +
+    labs(x = "GDP per capita ($/year)", y = "Life expectancy (years)") +
+    labs(color = "Continent", size = "Population (M)") +
+    theme(plot.title = element_text(hjust = 0.5))
+```
+
+The default label couldn't clearly identify the dot for Canada. Let's use the [ggrepel](https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html) package to improve the labeling.
+
+```{r}
+library(ggrepel)
+gapminder %>%
+  filter(year == 2007) %>%
+  mutate(pop_m = pop / 1e6) %>%
+  ggplot(aes(x = gdpPercap, y = lifeExp)) +
+    geom_point(aes(size = pop_m, color = continent), alpha = 0.5) +
+    geom_text_repel(
+      data = filter(gapminder, country == "Canada" & year == 2007), 
+      aes(label = country),
+      nudge_x = 5000,
+      nudge_y = -10) +
+    scale_x_continuous(labels = comma_format()) +
+    labs(title = 'Health & Wealth of Nations for 2007') +
+    labs(x = "GDP per capita ($/year)", y = "Life expectancy (years)") +
+    labs(color = "Continent", size = "Population (M)") +
+    theme(plot.title = element_text(hjust = 0.5))
+```
+
+Let's make the x-axis in log scale.
+
+```{r}
+# log
+gapminder %>%
+  filter(year == 2007) %>%
+  mutate(pop_m = pop / 1e6) %>%
+  ggplot(aes(x = gdpPercap, y = lifeExp)) +
+    geom_point(aes(size = pop_m, color = continent), alpha = 0.5) +
+    geom_text_repel(
+      data = filter(gapminder, country == "Canada" & year == 2007), 
+      aes(label = country),
+      nudge_x = log10(3),
+      nudge_y = -10) +
+    scale_x_continuous(labels = comma_format(), trans = 'log10') +
+    labs(title = 'Health & Wealth of Nations for 2007') +
+    labs(x = "GDP per capita ($/year)", y = "Life expectancy (years)") +
+    labs(color = "Continent", size = "Population (M)") +
+    theme(plot.title = element_text(hjust = 0.5))
+```
+
+Let's add a linear regression line.
+
+```{r}
+# smooth - lm
+gapminder %>%
+  filter(year == 2007) %>%
+  mutate(pop_m = pop / 1e6) %>%
+  ggplot(aes(x = gdpPercap, y = lifeExp)) +
+    geom_point(aes(size = pop_m, color = continent), alpha = 0.5) +
+    geom_smooth(method = "lm") +
+    geom_text_repel(
+      data = filter(gapminder, country == "Canada" & year == 2007), 
+      aes(label = country),
+      nudge_x = log10(3),
+      nudge_y = -10) +
+    scale_x_continuous(labels = comma_format(), trans = 'log10') +
+    labs(title = 'Health & Wealth of Nations for 2007') +
+    labs(x = "GDP per capita ($/year)", y = "Life expectancy (years)") +
+    labs(color = "Continent", size = "Population (M)") +
+    theme(plot.title = element_text(hjust = 0.5))
+```
+
+What if we don't use log scale on x-axis and let ggplot fit a smooth curve for us?
+
+```{r}
+# smooth - auto
+gapminder %>%
+  filter(year == 2007) %>%
+  mutate(pop_m = pop / 1e6) %>%
+  ggplot(aes(x = gdpPercap, y = lifeExp)) +
+    geom_point(aes(size = pop_m, color = continent), alpha = 0.5) +
+    geom_smooth(method = "auto") +
+    geom_text_repel(
+      data = filter(gapminder, country == "Canada" & year == 2007), 
+      aes(label = country),
+      nudge_x = 5000,
+      nudge_y = -10) +
+    scale_x_continuous(labels = comma_format()) +
+    labs(title = 'Health & Wealth of Nations for 2007') +
+    labs(x = "GDP per capita ($/year)", y = "Life expectancy (years)") +
+    labs(color = "Continent", size = "Population (M)") +
+    theme(plot.title = element_text(hjust = 0.5))
+```
+
+Let's compare plots between 2002 and 2007 using faceting (`facet_grid`).
+
+```{r}
+# smooth
+gapminder %>%
+  filter(year == 2007 | year == 2002) %>%
+  mutate(pop_m = pop / 1e6) %>%
+  ggplot(aes(x = gdpPercap, y = lifeExp)) +
+    geom_point(aes(size = pop_m, color = continent), alpha = 0.5) +
+    geom_smooth(method = "auto") +
+    scale_x_continuous(labels = comma_format()) +
+    labs(title = 'Health & Wealth of Nations for 2007') +
+    labs(x = "GDP per capita ($/year)", y = "Life expectancy (years)") +
+    labs(color = "Continent", size = "Population (M)") +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    facet_grid(year~.)
+```
+
+## Exercise
+
+Take a look at the diamonds dataset. Produce a scatter plot with `price` (y) against `carat` (x) and color the dots by `clarity`. Fine tune the plots to make it as nice as you can.
+
+```{r}
+# take a look at the diamonds dataset
+head(diamonds)
+
+# your code below
+```
+
+By now, you should have a good understanding on how the layer-by-layer approach works in `ggplot()`. Obviously, there are a lot more to learn about `ggplot()`, but the approach is always the same so you can learn other plots easily by referring to the `ggplot()` [document](https://ggplot2.tidyverse.org/index.html).
+
+# References
+
+1.  [Visualization](https://r4ds.hadley.nz/visualize) Section in [R for Data Science (2ed)](https://r4ds.hadley.nz/)
+2.  [Quarto](https://r4ds.hadley.nz/quarto) chapter in [R for Data Science (2ed)](https://r4ds.hadley.nz/)
